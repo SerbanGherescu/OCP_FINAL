@@ -5,6 +5,7 @@ import com.example.ocpv2.entity.exceptions.ProductNotFoundException;
 import com.example.ocpv2.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +38,13 @@ public class ProductController {
         }
 
         return products;
+    }
+
+    @GetMapping("/productsList")
+    public String listProducts(Model model) {
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        return "productsList"; // Return the name of the view template
     }
 
     @DeleteMapping("/{id}")

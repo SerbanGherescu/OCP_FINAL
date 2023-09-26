@@ -30,25 +30,27 @@
   <div class="row col-md-10">
     <h2>Lista de produse</h2>
   </div>
-  <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover">
     <thead class="table-dark">
     <tr>
-      <th>Denumire Produs</th>
-      <th>Descriere</th>
+      <th>Imagini</th>
+      <th>Denumire Produse</th>
+      <th>Descriere Produse</th>
       <th>Pret</th>
       <th>Stock</th>
 
     </tr>
     </thead>
-    <tbody>
-    <tr th:each = "product : ${product}">
-      <td th:text = "${product.name}"></td>
-      <td th:text = "${product.description}"></td>
-      <td th:text = "${product.price}"></td>
-      <td th:text = "${product.stock}"></td>
-    </tr>
-    </tbody>
-  </table>
+      <tbody>
+      <tr th:each = "product : ${product}">
+        <td th:text = "${product.name}"></td>
+        <td th:text = "${product.description}">
+        </td><td><img th:src="${product.imageUrl}" alt=""></td>
+        <td th:text = "${product.price}"></td>
+        <td th:text = "${product.stock}"></td>
+      </tr>
+      </tbody>
+    </table>
 </div>
 </body>
 </html>

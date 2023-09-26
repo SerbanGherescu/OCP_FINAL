@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Adauga produse</title>
+    <script>
+        document.getElementById("imageUpload").addEventListener("change", function() {
+            var selectedFile = this.files[0];
+            if (selectedFile) {
+                document.getElementById("selectedFileName").textContent = "Selected File: " + selectedFile.name;
+            } else {
+                document.getElementById("selectedFileName").textContent = "";
+            }
+        });
+    </script>
 </head>
 <body>
     <h1>Add Product</h1>
     <form th:action="@{/panel/add-product}" th:object="${product}" method="post">
         <!-- Form fields for product details (e.g., name, price, etc.) -->
+
         <input type="text" th:field="*{name}" placeholder="Denumire">
         <input type="text" th:field="*{description}" placeholder="Descriere">
         <input type="text" th:field="*{price}" placeholder="Pret">
+        <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;">
+        <label for="imageUpload" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Upload Image
+        </label>
+        <!-- Display the selected file name (optional) -->
+        <span id="selectedFileName"></span>
         <input type="text" th:field="*{stock}" placeholder="Stock">
         <!-- Add more fields as needed -->
         <button type="submit">Add Product</button>
