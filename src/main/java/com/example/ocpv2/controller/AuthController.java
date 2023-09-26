@@ -65,7 +65,6 @@ public class AuthController {
             if (existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()) {
                 result.rejectValue("email", null,
                         "Exista deja un cont creat cu aceasta adresa de email!");
-                return "register";
             }
             return "redirect:/register?success";
         }
