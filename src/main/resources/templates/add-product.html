@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adauga produse</title>
+</head>
+<body>
+    <h1>Add Product</h1>
+    <form th:action="@{/panel/add-product}" th:object="${product}" method="post">
+        <!-- Form fields for product details (e.g., name, price, etc.) -->
+        <input type="text" th:field="*{name}" placeholder="Denumire">
+        <input type="text" th:field="*{description}" placeholder="Descriere">
+        <input type="text" th:field="*{price}" placeholder="Pret">
+        <input type="text" th:field="*{stock}" placeholder="Stock">
+        <!-- Add more fields as needed -->
+        <button type="submit">Add Product</button>
+    </form>
+</body>
+</html>

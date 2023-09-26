@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AdminPanel</title>
+</head>
+<body>
+<div class="container body">
+<!--    <a type="button" class="btn btn-primary" routerLink="/admin">Back</a>-->
+    <br>
+    <br>
+    <h3>Adauga un produs nou!</h3>
+
+    <!-- Validation -->
+    <div *ngIf="newProductForm.controls['name'].invalid &&
+(newProductForm.controls['name'].dirty || newProductForm.controls['name'].touched)" class="alert alert-danger">
+
+        <div *ngIf="newProductForm.controls['name'].errors?.['required']">
+            Este obligatoriu sa pui o denumire produsului!
+        </div>
+        <div *ngIf="newProductForm.controls['name'].errors?.['minlength']">
+            Denumirea trebuie sa aiba minim 4 caractere!
+        </div>
+    </div>
+
+    <div *ngIf="newProductForm.controls['description'].invalid &&
+(newProductForm.controls['description'].dirty || newProductForm.controls['description'].touched)"
+         class="alert alert-warning">
+        <div *ngIf="newProductForm.controls['name'].errors?.['required']">
+            Produsul are nevoie de o descriere! Adauga una!
+        </div>
+        <div *ngIf="newProductForm.controls['description'].errors?.['minlength']">
+            Descrierea trebuie sa contina minim 15 caractere!
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
