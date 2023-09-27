@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creeaza Roluri</title>
+</head>
+    <body>
+        <h1>Creeaza un Rol</h1>
+        <form th:action="@{/panel/create-role}" th:object="${role}" method="post">
+            <!-- Form fields for product details (e.g., name, price, etc.) -->
+            <input type="text" th:field="*{name}" placeholder="Denumire Rol">
+            <!-- Add more fields as needed -->
+            <button type="submit">Creeaza</button>
+    </form>
+    <div class="text-center">
+        <a class="btn btn-success" th:href="@{/panel}">Inapoi in panel</a>
+    </div>
+</body>
+</html>

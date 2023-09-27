@@ -12,7 +12,7 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
 
     Role save(Role role);
 
-    Optional<Role> findByName(String name);
+    Role findByName(String name);
 
     void deleteById(Long id);
 

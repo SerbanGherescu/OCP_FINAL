@@ -1,5 +1,6 @@
 package com.example.ocpv2.controller;
 
+import com.example.ocpv2.entity.Role;
 import com.example.ocpv2.entity.User;
 import com.example.ocpv2.repository.RoleRepository;
 import com.example.ocpv2.service.UserService;
@@ -13,13 +14,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 public class AuthController {
 
     @Autowired
     private UserService userService;
-
-    private RoleRepository roleRepository;
 
     public AuthController(UserService userService) {
         this.userService = userService;
@@ -55,17 +58,21 @@ public class AuthController {
             // pop retry register
             return "register";
         } else {
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            String encodedPassword = encoder.encode(user.getPassword());
-
-            user.setPassword(encodedPassword);
-            userService.saveUser(user);
-
             User existingUser = userService.findUserByEmail(user.getEmail());
             if (existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()) {
                 result.rejectValue("email", null,
                         "Exista deja un cont creat cu aceasta adresa de email!");
+                return "redirect:/register?error";
+            } else {
+
+                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+                String encodedPassword = encoder.encode(user.getPassword());
+
+                user.setPassword(encodedPassword);
+                userService.saveUser(user);
+
             }
+
             return "redirect:/register?success";
         }
     }

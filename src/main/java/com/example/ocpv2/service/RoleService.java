@@ -11,8 +11,8 @@ public class RoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public Role saveRole(Role role) {
-        return roleRepository.save(role);
+    public void saveRole(Role role) {
+        roleRepository.save(role);
     }
 
     public Role searchRoleById(Long id) {

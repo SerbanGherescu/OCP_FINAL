@@ -35,9 +35,10 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) ->
-                        requests.requestMatchers("/index","/register","/login").permitAll()
+                        requests.requestMatchers("/panel/add-product","/panel/create-role","/panel")
+                                .hasRole("ADMIN")
                                 .requestMatchers("/productsList").authenticated()
-                                .requestMatchers("/panel/add-product","/panel").hasRole("ADMIN")
+                                .requestMatchers("/index","/register","/login").permitAll()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
